@@ -37,15 +37,15 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
 
         // Find the TextView in the list_item.xml layout with the ID magnitude_text_view
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
-        magnitudeTextView.setText(currentEarthQuake.getmMagnitude());
+        magnitudeTextView.setText(currentEarthQuake.getMagnitude());
 
         // Find the TextView in the list_item.xml layout with the ID location_text_view
         TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
-        magnitudeTextView.setText(currentEarthQuake.getmMagnitude());
+        locationTextView.setText(currentEarthQuake.getLocation());
 
         // Find the TextView in the list_item.xml layout with the ID date_text_view
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
-        magnitudeTextView.setText(currentEarthQuake.getmMagnitude());
+        dateTextView.setText(currentEarthQuake.getMagnitude());
 
         return listItemView;
     }

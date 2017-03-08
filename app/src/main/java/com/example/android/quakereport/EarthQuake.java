@@ -11,15 +11,15 @@ public class EarthQuake {
         mDate = date;
     }
 
-    public String getmCity() {
+    public String getLocation() {
         return mLocation;
     }
 
-    public String getmDate() {
+    public String getDate() {
         return mDate;
     }
 
-    public String getmMagnitude() {
+    public String getMagnitude() {
         return mMagnitude;
     }
 }

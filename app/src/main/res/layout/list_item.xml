@@ -4,26 +4,29 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="64dp">
+    android:minHeight="45dp">
 
     <TextView
         android:id="@+id/magnitude_text_view"
         android:layout_height="match_parent"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"/>
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:gravity="center"
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/location_text_view"
         android:layout_height="match_parent"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"/>
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:gravity="center"
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/date_text_view"
         android:layout_height="match_parent"
         android:layout_width="0dp"
-        android:layout_weight="0.3"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"/>
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:gravity="center"
+        android:layout_weight="1"/>
 </LinearLayout>
