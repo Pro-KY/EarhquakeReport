@@ -1,11 +1,11 @@
 package com.example.android.quakereport;
 
-public class EarthQuake {
+public class Earthquake {
     private String mMagnitude;
     private String mLocation;
     private String mDate;
 
-    public EarthQuake(String magnitude, String city, String date) {
+    public Earthquake(String magnitude, String city, String date) {
         mMagnitude = magnitude;
         mLocation = city;
         mDate = date;

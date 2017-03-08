@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
+public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
-    public EarthQuakeAdapter(Context context, ArrayList<EarthQuake> quakeData) {
+    public EarthquakeAdapter(Context context, ArrayList<Earthquake> quakeData) {
         super(context, 0, quakeData);
     }
 
@@ -33,19 +33,19 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
         }
 
         // Get the object located at this position in the list
-        EarthQuake currentEarthQuake = getItem(position);
+        Earthquake currentEarthquake = getItem(position);
 
         // Find the TextView in the list_item.xml layout with the ID magnitude_text_view
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
-        magnitudeTextView.setText(currentEarthQuake.getMagnitude());
+        magnitudeTextView.setText(currentEarthquake.getMagnitude());
 
         // Find the TextView in the list_item.xml layout with the ID location_text_view
         TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
-        locationTextView.setText(currentEarthQuake.getLocation());
+        locationTextView.setText(currentEarthquake.getLocation());
 
         // Find the TextView in the list_item.xml layout with the ID date_text_view
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
-        dateTextView.setText(currentEarthQuake.getMagnitude());
+        dateTextView.setText(currentEarthquake.getDate());
 
         return listItemView;
     }

@@ -22,10 +22,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class EarthQuakeActivity extends AppCompatActivity {
+public class EarthquakeActivity extends AppCompatActivity {
 
-    public static final String LOG_TAG = EarthQuakeActivity.class.getName();
-    ArrayAdapter<EarthQuake> mEarthQuakeAdapter;
+    public static final String LOG_TAG = EarthquakeActivity.class.getName();
+    ArrayAdapter<Earthquake> mEarthQuakeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +33,15 @@ public class EarthQuakeActivity extends AppCompatActivity {
         setContentView(R.layout.earthquake_activity);
 
         // Create a fake list of earthquake locations.
-        ArrayList<EarthQuake> earthquakes = new ArrayList<>();
-        earthquakes.add(new EarthQuake("7.2", "San Francisco", "Feb 2, 2016"));
-        earthquakes.add(new EarthQuake("6.1", "London", "July 20, 2015"));
-        earthquakes.add(new EarthQuake("3.9", "Tokyo", "Nov 10, 2014"));
-        earthquakes.add(new EarthQuake("5.4", "Mexico City", "May 3, 2014"));
-        earthquakes.add(new EarthQuake("2.9", "Moscow", "Jan 31, 2016"));
-        earthquakes.add(new EarthQuake("4.2", "Kyiv", "Jun 7, 2017"));
-        earthquakes.add(new EarthQuake("3.2", "Kharkiv", "Jan 19, 2015"));
-        earthquakes.add(new EarthQuake("1.2", "Ternopil", "Jul 5, 2016"));
-
+        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
-        // Initialize EarthQuakeAdapter
-        mEarthQuakeAdapter = new EarthQuakeAdapter(this, earthquakes);
+        // Initialize EarthquakeAdapter
+        mEarthQuakeAdapter = new EarthquakeAdapter(this, earthquakes);
 
-        // Set the adapter on the  EarthQuakeActivity ListView
+        // Set the adapter on the  EarthquakeActivity ListView
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(mEarthQuakeAdapter);
     }
