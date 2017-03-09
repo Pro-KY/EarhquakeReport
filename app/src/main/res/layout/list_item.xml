@@ -6,27 +6,63 @@
     android:layout_height="match_parent"
     android:minHeight="45dp">
 
+    <!-- Magnitude -->
     <TextView
         android:id="@+id/magnitude_text_view"
-        android:layout_height="match_parent"
-        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="16dp"
         android:textSize="16sp"
-        android:gravity="center"
-        android:layout_weight="1"/>
+        android:gravity="center" />
 
-    <TextView
-        android:id="@+id/location_text_view"
-        android:layout_height="match_parent"
+    <!-- Location text container -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="0dp"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        android:minHeight="45dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/date_text_view"
-        android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/distance_text_view"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/place_text_view"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- Date text container -->
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="0dp"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content"
+        android:minHeight="45dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/time_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:gravity="center" />
+    </LinearLayout>
 </LinearLayout>
