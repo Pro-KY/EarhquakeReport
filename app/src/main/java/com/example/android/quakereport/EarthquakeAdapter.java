@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
@@ -45,7 +48,17 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
         // Find the TextView in the list_item.xml layout with the ID date_text_view
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
-        dateTextView.setText(currentEarthquake.getDate());
+
+        // Format date in milliseconds into human readable format
+        long dateInMilliSeconds = currentEarthquake.getDate();
+        Date dateObject = new Date(dateInMilliSeconds);
+
+        //Locale ukraineLocale = new Locale("ukr", "ua");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy", Locale.US);
+        String dateToDisplay = dateFormatter.format(dateObject);
+
+        // set the date into dateTextView
+        dateTextView.setText(dateToDisplay);
 
         return listItemView;
     }

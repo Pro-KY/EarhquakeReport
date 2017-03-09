@@ -36,7 +36,7 @@ public class QueryUtils {
 
         Double magnitude;
         String location;
-        Long time;
+        Long date;
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -62,17 +62,15 @@ public class QueryUtils {
                 // get location value from the object
                 location = propertiesObject.getString(LOCATION);
                 // get data value from the object
-                time = propertiesObject.getLong(TIME);
+                date = propertiesObject.getLong(TIME);
 
                 // String representation of the earthquake values
                 String magnitudeStr = String.valueOf(magnitude);
                 Log.d("magnitudeStr", magnitudeStr);
-                String timeStr = String.valueOf(time);
-                Log.d("timeStr", timeStr);
                 Log.d("location", location);
 
                 // add retrieved data from the json to earthquakes arrayList
-                earthquakes.add(new Earthquake(magnitudeStr, location, timeStr));
+                earthquakes.add(new Earthquake(magnitudeStr, location, date));
             }
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
@@ -84,5 +82,4 @@ public class QueryUtils {
         // Return the list of earthquakes
         return earthquakes;
     }
-
 }
