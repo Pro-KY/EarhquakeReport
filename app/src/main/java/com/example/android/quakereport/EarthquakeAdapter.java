@@ -51,8 +51,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView distanceTextView = (TextView) listItemView.findViewById(R.id.distance_text_view);
         TextView placeTextView = (TextView) listItemView.findViewById(place_text_view);
 
-        // if there is distance in location string, then set distance and place of the earthquake into
-        // separate TextViews, otherwise display only place value
+        // if there is proximity in location string, then set distance and place of the earthquake into
+        // 2 separate TextViews, otherwise display "Near the" instead of proximity information
         if(location.lastIndexOf("of") != -1) {
             String distanceSubstring = location.substring(0, location.lastIndexOf("of")+2);
             Log.d("topStringValue", distanceSubstring);
@@ -62,8 +62,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
             Log.d("bottomStringValue", placeSubstring);
             placeTextView.setText(placeSubstring);
         } else {
-            distanceTextView.setText(location);
-            placeTextView.setVisibility(View.GONE);
+            distanceTextView.setText("Near the");
+            placeTextView.setText(location);
+            //placeTextView.setVisibility(View.GONE);
         }
 
         // Find the TextView in the list_item.xml layout with the ID date_text_view
