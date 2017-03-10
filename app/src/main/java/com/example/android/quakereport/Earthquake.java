@@ -40,3 +40,4 @@ public class Earthquake {
         return timeFormat.format(dateObject);
     }
 }
+
