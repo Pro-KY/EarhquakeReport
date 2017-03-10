@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.example.android.quakereport.R.id.place_text_view;
-
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     public EarthquakeAdapter(Context context, ArrayList<Earthquake> quakeData) {
@@ -51,7 +49,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // displays the proximity of an earthquake
         TextView proximityTextView = (TextView) listItemView.findViewById(R.id.proximity_text_view);
         // displays place of the earthquake
-        TextView placeTextView = (TextView) listItemView.findViewById(place_text_view);
+        TextView placeTextView = (TextView) listItemView.findViewById(R.id.place_text_view);
 
         // if there is proximity in location string, then set distance and place of the earthquake into
         // 2 separate TextViews, otherwise display "Near the" instead of proximity information
@@ -79,6 +77,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // set date and time into appropriate TextViews
         dateTextView.setText(currentEarthquake.formatDate(dateObject));
         timeTextView.setText(currentEarthquake.formatTime(dateObject));
+
+        //Locale ukraineLocale = new Locale("ukr", "ua");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy", Locale.US);
+        String dateToDisplay = dateFormatter.format(dateObject);
+
+        // set the date into dateTextView
+        dateTextView.setText(dateToDisplay);
 
         return listItemView;
     }
