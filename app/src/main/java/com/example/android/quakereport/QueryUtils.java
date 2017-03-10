@@ -64,13 +64,8 @@ public class QueryUtils {
                 // get data value from the object
                 date = propertiesObject.getLong(TIME);
 
-                // String representation of the earthquake values
-                String magnitudeStr = String.valueOf(magnitude);
-                Log.d("magnitudeStr", magnitudeStr);
-                Log.d("location", location);
-
                 // add retrieved data from the json to earthquakes arrayList
-                earthquakes.add(new Earthquake(magnitudeStr, location, date));
+                earthquakes.add(new Earthquake(magnitude, location, date));
             }
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
