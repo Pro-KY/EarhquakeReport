@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:padding="13dp">
 
     <!-- Magnitude -->
     <TextView
@@ -22,49 +24,53 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:minHeight="45dp"
+        android:layout_marginStart="16dp"
         android:layout_weight="1"
         android:layout_gravity="center_vertical">
 
         <TextView
             android:id="@+id/proximity_text_view"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_weight="1"/>
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/place_text_view"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_weight="1"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/textColorEarthquakeLocation"
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <!-- Date text container -->
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="45dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp">
 
         <TextView
             android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textSize="16sp"
-            android:gravity="center" />
+            android:layout_gravity="end"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/time_text_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textSize="16sp"
-            android:gravity="center" />
+            android:layout_gravity="end"
+            android:textColor="@color/textColorEarthquakeDetails"
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>
