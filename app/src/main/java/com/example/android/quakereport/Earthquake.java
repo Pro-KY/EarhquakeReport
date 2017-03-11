@@ -8,12 +8,15 @@ public class Earthquake {
     private double mMagnitude;
     private String mLocation;
     private Long mDate;
+    // contains detail information about earthquake
+    private String mUrl;
     //Locale ukraineLocale = new Locale("ukr", "ua");
 
-    public Earthquake(double magnitude, String city, Long date) {
+    public Earthquake(double magnitude, String city, Long date, String url) {
         mMagnitude = magnitude;
         mLocation = city;
         mDate = date;
+        mUrl = url;
     }
 
     public String getLocation() {
@@ -26,6 +29,10 @@ public class Earthquake {
 
     public double getMagnitude() {
         return mMagnitude;
+    }
+
+    public String getUrl() {
+        return mUrl;
     }
 
     // Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.

@@ -69,11 +69,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // 2 separate TextViews, otherwise display "Near the" instead of proximity information
         if(location.lastIndexOf("of") != -1) {
             String distanceSubstring = location.substring(0, location.lastIndexOf("of")+2);
-            Log.d("topStringValue", distanceSubstring);
             proximityTextView.setText(distanceSubstring);
 
             String placeSubstring = location.substring(location.lastIndexOf("of")+3);
-            Log.d("bottomStringValue", placeSubstring);
             placeTextView.setText(placeSubstring);
         } else {
             proximityTextView.setText("Near the");
