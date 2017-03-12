@@ -17,12 +17,13 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
-    public EarthquakeAdapter(Context context, ArrayList<Earthquake> quakeData) {
+    public EarthquakeAdapter(Context context, List<Earthquake> quakeData) {
         super(context, 0, quakeData);
     }
 
