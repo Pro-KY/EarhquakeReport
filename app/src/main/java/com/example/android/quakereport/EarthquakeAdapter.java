@@ -5,6 +5,7 @@ import android.content.Context;
 
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +22,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static android.R.attr.data;
+
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
-    public EarthquakeAdapter(Context context, List<Earthquake> quakeData) {
-        super(context, 0, quakeData);
+    private List<Earthquake> earthquakes = new ArrayList<>();
+
+    public EarthquakeAdapter(Context context, List<Earthquake> earthquakesData) {
+        super(context, 0, earthquakesData);
+        this.earthquakes = earthquakesData;
     }
 
     @NonNull
@@ -139,5 +145,17 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
                 magnitudeColorResourceId = R.color.magnitude10plus;
         }
         return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
+    }
+
+    public void setEarthquakesData(List<Earthquake> earthquakesData) {
+        earthquakes.addAll(earthquakesData);
+        // notify when underlying data has changed
+        notifyDataSetChanged();
+    }
+
+    @Nullable
+    @Override
+    public Earthquake getItem(int position) {
+        return earthquakes.get(position);
     }
 }
