@@ -27,7 +27,7 @@ public class QueryUtils {
 
     // Return the list of earthquakes from json string
     public static ArrayList<Earthquake> extractEarthquakesData(String requestUrl) {
-
+        Log.d("in", "extractEarthquakesData");
         // 1. Create url
         URL url = createURL(requestUrl);
 
@@ -35,7 +35,6 @@ public class QueryUtils {
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
-            Log.d("jsonResponse", jsonResponse);
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error closing input stream", e);
         }
@@ -58,7 +57,6 @@ public class QueryUtils {
 
     // Make an HTTP request to the given URL and return a String as the response.
     private static String makeHttpRequest(URL url) throws IOException {
-        Log.d("in", "makeHttpRequest");
         String jsonResponse = "";
 
         // If the URL is null, then return early.
@@ -75,7 +73,7 @@ public class QueryUtils {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            Log.d("http code:", String.valueOf(urlConnection.getResponseCode()));
+            Log.d("http code", String.valueOf(urlConnection.getResponseCode()));
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
             if (urlConnection.getResponseCode() == 200) {
@@ -95,7 +93,6 @@ public class QueryUtils {
             }
         }
 
-        Log.d("jsonResponse", jsonResponse);
         return jsonResponse;
     }
 
@@ -120,7 +117,6 @@ public class QueryUtils {
 
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(earthquakeJSON)) {
-            Log.d("json is null", Boolean.toString(TextUtils.isEmpty(earthquakeJSON)));
             return null;
         }
 

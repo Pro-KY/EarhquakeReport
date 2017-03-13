@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,9 @@ public class EarthquakeActivity extends AppCompatActivity
 
     private EarthquakeAdapter mEarthQuakeAdapter;
 
+    // TextView that is displayed when the list is empty
+    private TextView mEmptyTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +38,11 @@ public class EarthquakeActivity extends AppCompatActivity
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
         earthquakeListView.setAdapter(mEarthQuakeAdapter);
 
+        mEmptyTextView = (TextView) findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmptyTextView);
+
         // initialize loader, onCreateLoader method will be run automatically
-        getSupportLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this).forceLoad();
+        getSupportLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this); // forceLoad();
 
         // set click listener to each item in the ListView
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,16 +63,24 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int id, Bundle args) {
+        Log.d("in", "onCreateLoader");
         return new EarthquakeLoader(EarthquakeActivity.this, USGS_REQUEST_URL);
     }
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakesData) {
-        mEarthQuakeAdapter.setEarthquakesData(earthquakesData);
+        Log.d("in", "onLoadFinished");
+
+        if (earthquakesData != null && !earthquakesData.isEmpty()) {
+            mEarthQuakeAdapter.setEarthquakesData(earthquakesData);
+        }
+
+        mEmptyTextView.setText(R.string.empty_view_text);
     }
 
     @Override
     public void onLoaderReset(Loader<List<Earthquake>> loader) {
+        Log.d("in", "onLoaderReset");
         // Loader reset, so we can clear out our existing data.
         mEarthQuakeAdapter.clear();
     }
