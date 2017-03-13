@@ -24,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EarthquakeActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<List<Earthquake>> {
+        implements LoaderManager.LoaderCallbacks<List<Earthquake>>,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query";
@@ -41,6 +42,11 @@ public class EarthquakeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
+        // Obtain a reference to the SharedPreferences file for this app
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // And register to be notified of preference changes
+        prefs.registerOnSharedPreferenceChangeListener(this);
+
         mEarthQuakeAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
 
         // Find a reference to the ListView in the layout
@@ -56,7 +62,7 @@ public class EarthquakeActivity extends AppCompatActivity
             // initialize loader, onCreateLoader method will be run automatically
             getSupportLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
         } else {
-            loadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
+            loadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.GONE);
             mEmptyTextView.setText(R.string.no_inet_connection_text);
         }
@@ -129,7 +135,7 @@ public class EarthquakeActivity extends AppCompatActivity
             mEarthQuakeAdapter.setEarthquakesData(earthquakesData);
         }
 
-        loadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
+        loadingIndicator = (ProgressBar) findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
         mEmptyTextView.setText(R.string.no_earthquakes_found_text);
@@ -149,5 +155,24 @@ public class EarthquakeActivity extends AppCompatActivity
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_min_magnitude_key)) ||
+                key.equals(getString(R.string.settings_order_by_key))){
+            // Clear the ListView as a new query will be kicked off
+            mEarthQuakeAdapter.clear();
+
+            // Hide the empty state text view as the loading indicator will be displayed
+            mEmptyTextView.setVisibility(View.GONE);
+
+            // Show the loading indicator while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            // Restart the loader to requery the USGS as the query settings have been updated
+            getSupportLoaderManager().restartLoader(EARTHQUAKE_LOADER_ID, null, this);
+        }
     }
 }
