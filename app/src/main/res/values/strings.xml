@@ -17,4 +17,9 @@
     <string name="app_name">Quake Report</string>
     <string name="no_earthquakes_found_text"> No earthquakes found. </string>
     <string name="no_inet_connection_text"> No internet connection. </string>
+
+    <!-- Settings Menu Item -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title  -->
+    <string name="settings_title">Earthquake Settings</string>
 </resources>
