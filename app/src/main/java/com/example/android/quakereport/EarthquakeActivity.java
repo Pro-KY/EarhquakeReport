@@ -1,6 +1,9 @@
 package com.example.android.quakereport;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -27,6 +30,7 @@ public class EarthquakeActivity extends AppCompatActivity
 
     // TextView that is displayed when the list is empty
     private TextView mEmptyTextView;
+    ProgressBar loadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,16 @@ public class EarthquakeActivity extends AppCompatActivity
         mEmptyTextView = (TextView) findViewById(R.id.empty_view);
         earthquakeListView.setEmptyView(mEmptyTextView);
 
-        // initialize loader, onCreateLoader method will be run automatically
-        getSupportLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this); // forceLoad();
+        // if there is internet connectivity then initialize the loader as usual, otherwise
+        // hide loading indicator and display "no internet connection message"
+        if(isInternetConnectivity()) {
+            // initialize loader, onCreateLoader method will be run automatically
+            getSupportLoaderManager().initLoader(EARTHQUAKE_LOADER_ID, null, this);
+        } else {
+            loadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
+            loadingIndicator.setVisibility(View.GONE);
+            mEmptyTextView.setText(R.string.no_inet_connection_text);
+        }
 
         // set click listener to each item in the ListView
         earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -77,10 +89,10 @@ public class EarthquakeActivity extends AppCompatActivity
             mEarthQuakeAdapter.setEarthquakesData(earthquakesData);
         }
 
-        ProgressBar loadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
+        loadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
         loadingIndicator.setVisibility(View.GONE);
 
-        mEmptyTextView.setText(R.string.empty_view_text);
+        mEmptyTextView.setText(R.string.no_earthquakes_found_text);
     }
 
     @Override
@@ -88,5 +100,14 @@ public class EarthquakeActivity extends AppCompatActivity
         Log.d("in", "onLoaderReset");
         // Loader reset, so we can clear out our existing data.
         mEarthQuakeAdapter.clear();
+    }
+
+    private boolean isInternetConnectivity() {
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
     }
 }
