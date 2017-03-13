@@ -94,15 +94,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         Date dateObject = new Date(dateInMilliSeconds);
 
         // set date and time into appropriate TextViews
-        dateTextView.setText(currentEarthquake.formatDate(dateObject));
-        timeTextView.setText(currentEarthquake.formatTime(dateObject));
-
-        //Locale ukraineLocale = new Locale("ukr", "ua");
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy", Locale.US);
-        String dateToDisplay = dateFormatter.format(dateObject);
-
+        String formattedDate = formatDate(dateObject);
         // set the date into dateTextView
-        dateTextView.setText(dateToDisplay);
+        dateTextView.setText(formattedDate);
+
+        String formattedTime = formatTime(dateObject);
+        // set the date into timeTextView
+        timeTextView.setText(formattedTime);
 
         return listItemView;
     }
@@ -157,5 +155,19 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     @Override
     public Earthquake getItem(int position) {
         return earthquakes.get(position);
+    }
+
+    // Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
+    public String formatDate(Date dateObject) {
+        //Locale ukraineLocale = new Locale("ukr", "ua");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy", Locale.US);
+        return dateFormat.format(dateObject);
+    }
+
+    // Return the formatted date string (i.e. "4:30 PM") from a Date object.
+    public String formatTime(Date dateObject) {
+        //Locale ukraineLocale = new Locale("ukr", "ua");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.US);
+        return timeFormat.format(dateObject);
     }
 }

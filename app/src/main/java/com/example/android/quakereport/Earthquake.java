@@ -34,17 +34,5 @@ public class Earthquake {
     public String getUrl() {
         return mUrl;
     }
-
-    // Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-    public String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy", Locale.US);
-        return dateFormat.format(dateObject);
-    }
-
-    // Return the formatted date string (i.e. "4:30 PM") from a Date object.
-    public String formatTime(Date dateObject) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.US);
-        return timeFormat.format(dateObject);
-    }
 }
 
