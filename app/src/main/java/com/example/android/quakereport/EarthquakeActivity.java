@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -72,8 +73,12 @@ public class EarthquakeActivity extends AppCompatActivity
         Log.d("in", "onLoadFinished");
 
         if (earthquakesData != null && !earthquakesData.isEmpty()) {
+            // set earthquake data to the adapter
             mEarthQuakeAdapter.setEarthquakesData(earthquakesData);
         }
+
+        ProgressBar loadingIndicator = (ProgressBar) findViewById(R.id.loading_spinner);
+        loadingIndicator.setVisibility(View.GONE);
 
         mEmptyTextView.setText(R.string.empty_view_text);
     }

@@ -27,6 +27,13 @@ public class QueryUtils {
 
     // Return the list of earthquakes from json string
     public static ArrayList<Earthquake> extractEarthquakesData(String requestUrl) {
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Log.d("in", "extractEarthquakesData");
         // 1. Create url
         URL url = createURL(requestUrl);
